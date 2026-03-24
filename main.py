@@ -14,15 +14,15 @@ skills_db = [
 
     # Backend
     "node.js", "express", "django", "flask", "spring boot",
-    "fastapi", "nestjs", "laravel"
+    "fastapi", "nestjs", "laravel", "golang", "ruby on rails"
 
     # Databases
-    "mongodb", "mysql", "postgresql", "sqlite",
-    "redis", "firebase", "supabase",
+    "mongodb", "mysql", "postgresql", "sqlite", "maria db", "elasticsearch"
+    "redis", "firebase", "supabase", "cassandra",
 
     #  DevOps & Tools
-    "docker", "kubernetes", "jenkins", "github actions",
-    "git", "nginx", "terraform",
+    "docker", "kubernetes", "jenkins", "github actions", "kafka", "rabbit mq",
+    "git", "nginx", "terraform", "grafana", 
 
     #  Cloud
     "aws", "azure", "google cloud", "gcp", "digital ocean"
@@ -31,7 +31,7 @@ skills_db = [
     "flutter", "react native", "android", "kotlin", "swift",
 
     # Programming Languages
-    "python", "java", "c", "c++", "c#", "go", "rust", "php", "javascript",
+    "python", "java", "c", "c++", "c#", "go", "rust", "php", "javascript", "go",
 
     # AI / ML
     "machine learning", "deep learning", "nlp", "computer vision",
@@ -48,7 +48,7 @@ skills_db = [
     "jest", "mocha", "chai", "cypress", "selenium",
 
     # Architecture & Concepts
-    "rest api", "graphql", "microservices", "system design",
+    "rest api", "graphql", "microservices", "system design", "soap"
 
     #  Others
     "linux", "bash", "web scraping", "socket.io"
@@ -104,10 +104,10 @@ def analyze(data: dict):
     matched = list(set(resume_skills) & set(jd_skills))
     missing = list(set(jd_skills) - set(resume_skills))
 
-    # 🔹 Score calculation
+    # Score calculation
     score = int((similarity * 0.6 + (len(matched)/max(len(jd_skills),1)) * 0.4) * 100)
 
-    # 🔹 Suggestions
+    #  Suggestions
     suggestions = [f"Add {skill} to your resume" for skill in missing[:5]]
 
     return {
