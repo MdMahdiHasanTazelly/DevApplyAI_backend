@@ -64,7 +64,7 @@ def analyze(data: dict):
 
 
 
-@app.post("/generate-cv")
+@app.post("/cv-suggestions")
 def generate_cover_letter(data: dict):
     resume = data["resumeText"]
     jobDesc = data["jobDesc"]
@@ -76,22 +76,11 @@ def generate_cover_letter(data: dict):
         )
         
 
-
     prompt = f"""
-    You are a professional resume writer.
     TASK:
-    Write ONLY a cover letter.
+    Write some suggestions for cover letter.
     STRICT RULES:
-    - Do NOT give suggestions
-    - Do NOT explain anything
-    - Do NOT include bullet points
-    - Do NOT include headings like "Suggestions"
-    - Output ONLY the cover letter
     - Maximum 100 words
-
-    FORMAT:
-    Start directly with "Dear Hiring Manager,"
-
     Resume:
     {resume}
 
@@ -103,9 +92,6 @@ def generate_cover_letter(data: dict):
         "model": "tinyllama",
         "prompt": prompt,
         "stream": False,
-        "options": {
-            "temperature": 0.3    # more deterministic
-        }
     }
 
     try:
